@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    input {
+      display: block;
+      margin-bottom: 5px;
+      padding: 8px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    span.error {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h4>Name:</h4>
+  <input id="name" placeholder="Enter full Name:">
+  <span id="nameError" class="error"></span>
+
+  <h4>Enter Mobile Number:</h4>
+  <input id="phone" placeholder="Enter Mobile Number:">
+  <span id="phoneError" class="error"></span>
+
+  <h4>Enter Email ID:</h4>
+  <input id="email" placeholder="Enter Email ID:">
+  <span id="emailError" class="error"></span>
+
+  <button onclick="Submit()">Submit</button>
+
+  <script>
+    function Submit() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+
+      const namepattern = /^[a-zA-Z]+\s+[a-zA-Z]+$/gi;
+      const phonepattern = /^\d{10}$/;
+      const emailpattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
+
+      let valid = true;
+
+      // Name
+      if (!namepattern.test(name)) {
+        document.getElementById('nameError').textContent = "Enter full name (first and last)";
+        valid = false;
+      } else {
+        document.getElementById('nameError').textContent = "";
+      }
+
+      // Phone
+      if (!phonepattern.test(phone)) {
+        document.getElementById('phoneError').textContent = "Enter a valid 10-digit phone number";
+        valid = false;
+      } else {
+        document.getElementById('phoneError').textContent = "";
+      }
+
+      // Email
+      if (!emailpattern.test(email)) {
+        document.getElementById('emailError').textContent = "Enter a valid email address";
+        valid = false;
+      } else {
+        document.getElementById('emailError').textContent = "";
+      }
+
+      if (valid) {
+        alert("Form submitted");
+      } else {
+        alert("Please check input fields!");
+      }
+    }
+
+    //adding more css 
+//adding these records in lists or database
+  </script>
+
+
+
+
+</body>
+
+</html>
